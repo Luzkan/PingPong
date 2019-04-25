@@ -11,4 +11,5 @@ So in this variation both players are bumping their combined total score as much
 - TopScore saved with SharedPreferences
 - Multitouch solution
 
-.gif featuring some gameplay soon
+## Gameplay
+![](https://i.imgur.com/Uae20RB.gif)
