@@ -2,6 +2,7 @@ package com.luzkan.pingpong
 
 import android.app.Activity
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.graphics.Point
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -19,8 +20,11 @@ class MainActivity : Activity() {
 
         // Get a Display object to access screen details
         val display = windowManager.defaultDisplay
+
+        // Block Orientation to potrait and remove navbar
         window.requestFeature(Window.FEATURE_NO_TITLE)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         // Load the resolution into a Point object
         val size = Point()

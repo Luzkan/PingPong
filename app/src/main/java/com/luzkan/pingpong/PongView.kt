@@ -122,7 +122,7 @@ class PongView (context: Context, var mScreenX: Int, var mScreenY: Int) : Surfac
             botLives--
             if (botLives == 0) {
                 mPaused = true
-                // TODO: Do smth when bottom player lose; atm does nothing instead and that's alright too.
+                // TODO: Could do smth when the bottom player loses the game; atm does nothing instead and that's alright too.
             }
 
             pongBall.setRandomXVelocity()
@@ -139,7 +139,7 @@ class PongView (context: Context, var mScreenX: Int, var mScreenY: Int) : Surfac
             topLives--
             if (topLives == 0) {
                 mPaused = true
-                // TODO: Do smth when top player lose; atm does nothing instead and that's alright too.
+                // TODO: Could smth when the top player loses the game; atm does nothing instead and that's alright too.
             }
 
             pongBall.setRandomXVelocity()
@@ -219,7 +219,7 @@ class PongView (context: Context, var mScreenX: Int, var mScreenY: Int) : Surfac
         mGameThread!!.start()
     }
 
-    // TODO: (Bug) Fix when more than one finger touches screen - first finger to hold moves both bars
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(motEvent: MotionEvent): Boolean {
 
         mPaused = false
@@ -231,10 +231,8 @@ class PongView (context: Context, var mScreenX: Int, var mScreenY: Int) : Surfac
                     bottomBar.setMovementState(bottomBar.LEFT)
                 }
 
-                var ind = motEvent.actionIndex
-
-                when (motEvent.action and MotionEvent.ACTION_MASK) {
-                        MotionEvent.ACTION_UP -> {
+                when (motEvent.actionMasked) {
+                    MotionEvent.ACTION_POINTER_UP, MotionEvent.ACTION_UP -> {
                         bottomBar.setMovementState(bottomBar.STOPPED)
                     }
                 }
@@ -246,9 +244,9 @@ class PongView (context: Context, var mScreenX: Int, var mScreenY: Int) : Surfac
                     topBar.setMovementState(topBar.LEFT)
                 }
 
-                when (motEvent.action and MotionEvent.ACTION_MASK) {
+                when (motEvent.actionMasked) {
                     // Player has removed finger from screen
-                    MotionEvent.ACTION_UP -> {
+                    MotionEvent.ACTION_POINTER_UP, MotionEvent.ACTION_UP -> {
                         topBar.setMovementState(topBar.STOPPED)
                     }
                 }
