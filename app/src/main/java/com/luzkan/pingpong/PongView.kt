@@ -225,19 +225,22 @@ class PongView (context: Context, var mScreenX: Int, var mScreenY: Int) : Surfac
         mPaused = false
         for(i in 0 until motEvent.pointerCount){
             if (motEvent.getY(i) > height/2){
-                if (motEvent.x > mScreenX / 2) {
+                if (motEvent.getX(i) > mScreenX / 2) {
                     bottomBar.setMovementState(bottomBar.RIGHT)
                 } else {
                     bottomBar.setMovementState(bottomBar.LEFT)
                 }
 
+                var ind = motEvent.actionIndex
+
                 when (motEvent.action and MotionEvent.ACTION_MASK) {
-                    MotionEvent.ACTION_UP -> {
+                        MotionEvent.ACTION_UP -> {
                         bottomBar.setMovementState(bottomBar.STOPPED)
                     }
                 }
+
             }else{
-                if (motEvent.x > mScreenX / 2) {
+                if (motEvent.getX(i) > mScreenX / 2) {
                     topBar.setMovementState(topBar.RIGHT)
                 } else {
                     topBar.setMovementState(topBar.LEFT)
