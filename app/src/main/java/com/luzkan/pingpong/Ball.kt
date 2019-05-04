@@ -11,7 +11,7 @@ class Ball(screenX: Int, screenY: Int) {
     private var mYVelocity: Float = 0.toFloat()
     private val mBallWidth: Float
     private val mBallHeight: Float
-    var itsBuggedSoItsWorkaroundSorry = screenX
+    var screenYr = screenY
 
     init {
         // Make the mBall size relative to the screen resolution
@@ -20,7 +20,7 @@ class Ball(screenX: Int, screenY: Int) {
 
         // Start the ball travelling straight up
         // at a quarter of the screen height per second
-        mYVelocity = (screenY / 4).toFloat()
+        mYVelocity = (screenY / 3).toFloat()
         mXVelocity = mYVelocity
 
         // Initialize the Rect that represents the mBall
@@ -54,14 +54,14 @@ class Ball(screenX: Int, screenY: Int) {
         }
     }
 
-    // Speed up by 10%
+    // Speed up by 2,5%
     fun increaseVelocity() {
-        mXVelocity += mXVelocity / 10
-        mYVelocity += mYVelocity / 10
+        mXVelocity += mXVelocity / 40
+        mYVelocity += mYVelocity / 40
     }
 
     fun resetVelocity(){
-        mYVelocity = (itsBuggedSoItsWorkaroundSorry / 4).toFloat()
+        mYVelocity = (screenYr / 3).toFloat()
         mXVelocity = mYVelocity
     }
 
